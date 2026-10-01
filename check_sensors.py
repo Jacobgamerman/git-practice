@@ -4,7 +4,7 @@ import pandas as pd
 import yaml
 
 
-def read_settings(file):
+def read_settings(file:str) -> tuple[str,int]:
     """
     Opens a config file and finds the max days without calibration and the output destination
     returns these two objects.
@@ -15,7 +15,7 @@ def read_settings(file):
         return data["max_days_since_calibration"], data["output_file"]
 
 
-def read_and_join_data(xlsx, csv):
+def read_and_join_data(xlsx:str, csv:str) -> pd.DataFrame:
     """
     Reads a given xlsx and csv file and merges the rows in these files based on sensor id
     returns one object which is the merged data.
@@ -28,7 +28,7 @@ def read_and_join_data(xlsx, csv):
     return new_data
 
 
-def handle_json(data, max_days: int, filepath):
+def handle_json(data: pd.DataFrame, max_days: int, filepath: str) -> None:
     """
     Understood it so that just the overdue sensors should be listed.
     """
